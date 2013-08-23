@@ -1,2 +1,3 @@
+dbus-launch --exit-with-session gnome-terminal
 export PATH=$PATH:/opt/baseline/bin
 eval "$(baseline autocomplete)"
