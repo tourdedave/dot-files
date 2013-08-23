@@ -10,5 +10,3 @@ ln -s ~/.vim/vimrc ~/.vimrc
 
 ln -s $curr_dir/bash/bashrc ~/.bashrc
 ln -s $curr_dir/bash/bash_profile ~/.bash_profile
-
-touch ~/.baseline_dotfiles
