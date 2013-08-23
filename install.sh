@@ -1,3 +1,3 @@
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
+ln -s .vimrc ~/.vimrc
 
 touch $HOME/.baseline_dotfiles
