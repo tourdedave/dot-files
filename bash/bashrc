@@ -1,3 +1,14 @@
-dbus-launch --exit-with-session gnome-terminal
-export PATH=$PATH:/opt/baseline/bin
-eval "$(baseline autocomplete)"
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='osx'
+fi
+
+if [[ $platform == 'linux' ]]; then
+  dbus-launch --exit-with-session gnome-terminal
+elif [[ $platform == 'osx' ]]; then
+  export PATH=$PATH:/opt/baseline/bin
+  eval "$(baseline autocomplete)"
+fi
