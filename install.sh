@@ -5,7 +5,7 @@ git submodule init; git submodule update;
 
 curr_dir=`pwd`
 
-ln -s $curr_dir/vim $HOME/.vim
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
+ln -s $curr_dir/vim ~/.vim
+ln -s ~/.vim/vimrc ~/.vimrc
 
-touch $HOME/.baseline_dotfiles
+touch ~/.baseline_dotfiles
