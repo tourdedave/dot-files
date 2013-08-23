@@ -16,8 +16,8 @@ set winminheight=0
 set winheight=999
 set hlsearch
 
-" #colorscheme Tomorrow-Night-Eighties
-" #call pathogen#infect()
+runtime bundle/pathogen.vim
+call pathogen#infect()
 
 filetype on
 syntax on
