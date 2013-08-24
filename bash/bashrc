@@ -8,7 +8,7 @@ fi
 
 if [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
-  dbus-launch --exit-with-session gnome-terminal
+  dbus-launch --exit-with-session
 elif [[ $platform == 'osx' ]]; then
   export PATH=$PATH:/opt/baseline/bin
   eval "$(baseline autocomplete)"
