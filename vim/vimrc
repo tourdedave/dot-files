@@ -16,7 +16,7 @@ set winminheight=0
 set winheight=999
 set hlsearch
 
-runtime bundle/pathogen.vim
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 filetype on
