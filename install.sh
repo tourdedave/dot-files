@@ -17,10 +17,4 @@ ln -s $curr_dir/bash/bashrc ~/.bashrc
 [[ -d $HOME/.bash_profile ]] && mv $HOME/.bash_profile $HOME/.bash_profile.backup
 ln -s $curr_dir/bash/bash_profile ~/.bash_profile
 
-OS=`uname -s`
-if [[ "$OS" != "Darwin" ]]; then
-  cd $HOME
-  curl -L https://gist.github.com/bltavares/2706792/raw/post-install.sh | bash
-fi
-
 touch $HOME/.baseline_dotfiles
