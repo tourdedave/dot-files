@@ -12,9 +12,12 @@ ln -s $curr_dir/vim $HOME/.vim
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
 
 [[ -f $HOME/.bashrc ]] && mv $HOME/.bashrc $HOME/.bashrc.backup
-ln -s $curr_dir/bash/bashrc ~/.bashrc
+ln -s $curr_dir/bash/bashrc $HOME/.bashrc
 
 [[ -f $HOME/.bash_profile ]] && mv $HOME/.bash_profile $HOME/.bash_profile.backup
-ln -s $curr_dir/bash/bash_profile ~/.bash_profile
+ln -s $curr_dir/bash/bash_profile $HOME/.bash_profile
+
+[[ -f $HOME/.irbrc ]] && mv $HOME/.irbrc $HOME/.irbrc.backup
+ln -s $curr_dir/irbrc $HOME/.irbrc
 
 touch $HOME/.baseline_dotfiles
