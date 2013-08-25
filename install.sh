@@ -20,4 +20,7 @@ ln -s $curr_dir/bash/bash_profile $HOME/.bash_profile
 [[ -f $HOME/.irbrc ]] && mv $HOME/.irbrc $HOME/.irbrc.backup
 ln -s $curr_dir/irbrc $HOME/.irbrc
 
+[[ -d $HOME/.rbenv ]] && mv $HOME/.rbenv $HOME/.rbenv.backup
+ln -s $curr_dir/rbenv $HOME/.rbenv
+
 touch $HOME/.baseline_dotfiles
