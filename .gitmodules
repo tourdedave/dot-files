@@ -4,6 +4,9 @@
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "rbenv/plugins/rbenv-binstubs"]
 	path = rbenv/plugins/rbenv-binstubs
 	url = https://github.com/ianheggie/rbenv-binstubs.git
