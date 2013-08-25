@@ -29,5 +29,3 @@ map <c-l> <c-w>l<c-w>_
 inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<Return>
 map <silent> <Leader><Leader> :noh<Return>
-
-let g:syntastic_ruby_checkers = ['rubocop']
