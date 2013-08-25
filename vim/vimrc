@@ -1,5 +1,5 @@
 map <C-r><C-r> :!clear; ruby % <Return>
-map <C-r> :!clear; bundle exec ckit brew -c config_local.yaml --tag wip <Return>
+map <C-r> :!clear; sudo ckit brew -c config_local.yaml --tag wip <Return>
 
 let mapleader = ","
 set list
