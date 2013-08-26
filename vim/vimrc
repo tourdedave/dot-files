@@ -30,20 +30,10 @@ inoremap <C-s> <esc>:w<cr>a
 nnoremap <C-s> :w<Return>
 map <silent> <Leader><Leader> :noh<Return>
 
-" display statusline with single window open
 set laststatus=2
-" path
-set statusline=%f
-" flags
-set statusline+=%m%r%h%w
-" git branch
-set statusline+=\ %{fugitive#statusline()}
-" encoding
-set statusline+=\ [%{strlen(&fenc)?&fenc:&enc}]
-" line x of y
-set statusline+=\ [line\ %l\/%L]
-" Colour
-hi StatusLine ctermfg=Black ctermbg=White
-" Change colour of statusline in insert mode
-au InsertEnter * hi StatusLine ctermbg=DarkBlue
-au InsertLeave * hi StatusLine ctermfg=Black ctermbg=White
+set statusline=
+set statusline+=%F                          "file & path
+set statusline+=\ %{fugitive#statusline()}  "git branch
+hi StatusLine ctermfg=DarkGreen ctermbg=Black
+au InsertEnter * hi StatusLine ctermfg=DarkRed ctermbg=DarkGreen
+au InsertLeave * hi StatusLine ctermfg=DarkGreen ctermbg=Black
