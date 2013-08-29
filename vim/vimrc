@@ -37,3 +37,5 @@ set statusline+=\ %{fugitive#statusline()}  "git branch
 hi StatusLine ctermfg=DarkYellow ctermbg=Black
 au InsertEnter * hi StatusLine ctermfg=DarkRed ctermbg=DarkGreen
 au InsertLeave * hi StatusLine ctermfg=DarkGreen ctermbg=Black
+
+let g:NERDTreeDirArrows=0
