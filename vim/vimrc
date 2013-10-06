@@ -40,3 +40,11 @@ au InsertLeave * hi StatusLine ctermfg=DarkGreen ctermbg=Black
 
 let g:NERDTreeDirArrows=0
 let NERDTreeShowHidden=1
+
+" System wide copy paste
+set clipboard=unnamedplus
+
+" Allows you to close vim, come back, and be able to undo with 'u'
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
