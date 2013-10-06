@@ -24,3 +24,6 @@ rm $HOME/.rbenv
 ln -s $curr_dir/rbenv $HOME/.rbenv
 
 touch $HOME/.baseline_dotfiles
+
+rm $HOME/.gitconfig
+ln -s $curr_dir/gitconfig $HOME/.gitconfig
