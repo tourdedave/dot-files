@@ -9,6 +9,7 @@ fi
 if [[ $platform == 'linux' ]]; then
   alias ls='ls --color=auto'
 elif [[ $platform == 'osx' ]]; then
+  sudo /Library/StartupItems/VirtualBox/VirtualBox restart
   export PATH=$PATH:/opt/baseline/bin
   eval "$(baseline autocomplete)"
 fi
@@ -21,3 +22,6 @@ fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# added by travis gem
+[ -f /home/vagrant/.travis/travis.sh ] && source /home/vagrant/.travis/travis.sh
