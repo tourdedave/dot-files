@@ -24,3 +24,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # added by travis gem
 [ -f /home/vagrant/.travis/travis.sh ] && source /home/vagrant/.travis/travis.sh
+
+set -o vi
