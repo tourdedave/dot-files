@@ -2,6 +2,6 @@
   lo = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 [user]
   name = Dave Haeffner
-  email = dave@arrgyle.com
+  email = dhaeffner@gmail.com
 [core]
   editor = vim -pc ':normal gg'
