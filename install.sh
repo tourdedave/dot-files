@@ -27,3 +27,6 @@ touch $HOME/.baseline_dotfiles
 
 rm $HOME/.gitconfig
 ln -s $curr_dir/gitconfig $HOME/.gitconfig
+
+rm $HOME/.tmux.conf
+ln -s $curr_dir/tmux $HOME/.tmux.conf
