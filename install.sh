@@ -30,3 +30,9 @@ ln -s $curr_dir/gitconfig $HOME/.gitconfig
 
 rm $HOME/.tmux.conf
 ln -s $curr_dir/tmux $HOME/.tmux.conf
+
+rm $HOME/.muttrc
+ln -s $curr_dir/mutt $HOME/.muttrc
+mkdir -p ~/.mutt/cache/headers
+mkdir ~/.mutt/cache/bodies
+touch ~/.mutt/certificates
