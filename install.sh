@@ -36,3 +36,6 @@ ln -s $curr_dir/mutt $HOME/.muttrc
 mkdir -p ~/.mutt/cache/headers
 mkdir ~/.mutt/cache/bodies
 touch ~/.mutt/certificates
+
+rm $HOME/.urlview
+ln -s $curr_dir/urlview $HOME/.urlview
