@@ -1,7 +1,4 @@
 [alias]
-[core]
-
-[alias]
         ci = commit
         co = checkout
         l = log
