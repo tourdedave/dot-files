@@ -28,3 +28,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 ### Set VIM to edit the command line
 set -o vi
+
+### Set locale
+export LC_ALL="en_US.utf8"
