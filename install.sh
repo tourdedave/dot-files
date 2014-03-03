@@ -39,3 +39,5 @@ touch ~/.mutt/certificates
 
 rm $HOME/.urlview
 ln -s $curr_dir/urlview $HOME/.urlview
+
+touch $HOME/.baseline_dotfiles
