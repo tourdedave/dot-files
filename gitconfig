@@ -1,7 +1,23 @@
 [alias]
-  lo = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-[user]
-  name = Dave Haeffner
-  email = dhaeffner@gmail.com
 [core]
-  editor = vim -pc ':normal gg'
+
+[alias]
+        ci = commit
+        co = checkout
+        l = log
+        graph = log --graph --decorate --oneline --branches
+        df = diff --cached --color --color-words
+        dff = diff --color --color-words
+        s = status -sb
+        lo = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+[color]
+        ui = always
+[core]
+        editor = vim -pc ':normal gg'
+[diff]
+        tool = vimdiff
+[merge]
+        tool = vimdiff
+[user]
+        name = Dave Haeffner
+        email = dhaeffner@gmail.com
