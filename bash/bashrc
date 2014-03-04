@@ -28,6 +28,7 @@ export PS1=$LIGHT_GRAY"\u@\h"'$(
 alias ll='ls -lah'
 alias gg='git status -s'
 alias gc='git add --all; git commit -a'
+alias gl='git lo'
 
 ### Set VIM to edit the command line
 set -o vi
