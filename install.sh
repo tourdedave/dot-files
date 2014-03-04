@@ -21,7 +21,15 @@ cp $curr_dir/irbrc $HOME/.irbrc
 
 # git
 rm $HOME/.gitconfig
-cp $curr_dir/git/gitconfig $HOME/.gitconfig
+cp $curr_dir/git/config $HOME/.gitconfig
+
+rm $HOME/.git-prompt.sh
+cp $curr_dir/git/prompt $HOME/.git-prompt.sh
+chmod 755 $HOME/.git-prompt.sh
+
+rm $HOME/.git-completion.bash
+cp $curr_dir/git/completion $HOME/.git-completion.bash
+chmod 755 $HOME/.git-completion.bash
 
 # tmux
 rm $HOME/.tmux.conf

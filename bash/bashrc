@@ -1,7 +1,8 @@
 #!/bin/bash
 
+### Git prompt styling
 source ~/.git-prompt.sh
-
+source ~/.git-completion.bash
 MAGENTA="\[\033[0;35m\]"
 YELLOW="\[\033[0;33m\]"
 BLUE="\[\033[34m\]"
@@ -23,11 +24,13 @@ export PS1=$LIGHT_GRAY"\u@\h"'$(
     else echo "'$CYAN'"$(__git_ps1 " (%s)")
     fi)'$BLUE" \w"$GREEN": "
 
+### Helpful aliases
 alias ll='ls -lah'
 alias gg='git status -s'
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+alias gc='git add --all; git commit -a'
 
 ### Set VIM to edit the command line
 set -o vi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
