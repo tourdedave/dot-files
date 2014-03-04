@@ -1,34 +1,30 @@
-### Setting platform value for cross-platform customization
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='osx'
-fi
+#!/bin/bash
 
-### Color addition to 'ls'
-if [[ $platform == 'linux' ]]; then
-  alias ls='ls --color=auto'
-### baseline autocomplete and command-line execution
-elif [[ $platform == 'osx' ]]; then
-  export PATH=$PATH:/opt/baseline/bin
-  eval "$(baseline autocomplete)"
-fi
+source ~/.git-prompt.sh
 
-### Git prompt config
-if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
-  export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
-  export GIT_PS1_SHOWDIRTYSTATE=1
-fi
+MAGENTA="\[\033[0;35m\]"
+YELLOW="\[\033[0;33m\]"
+BLUE="\[\033[34m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+CYAN="\[\033[0;36m\]"
+GREEN="\[\033[0;32m\]"
+GIT_PS1_SHOWDIRTYSTATE=true
+export LS_OPTIONS='--color=auto'
+export CLICOLOR='Yes'
+export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
+export PS1=$LIGHT_GRAY"\u@\h"'$(
+    if [[ $(__git_ps1) =~ \*\)$ ]]
+    # a file has been modified but not added
+    then echo "'$YELLOW'"$(__git_ps1 " (%s)")
+    elif [[ $(__git_ps1) =~ \+\)$ ]]
+    # a file has been added, but not commited
+    then echo "'$MAGENTA'"$(__git_ps1 " (%s)")
+    # the state is clean, changes are commited
+    else echo "'$CYAN'"$(__git_ps1 " (%s)")
+    fi)'$BLUE" \w"$GREEN": "
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 ### Set VIM to edit the command line
 set -o vi
-
-### Set locale
-export LC_ALL="en_US.utf8"
-setxkbmap -layout en_US

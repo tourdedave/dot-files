@@ -1,41 +1,28 @@
-#!/bin/bash
-
-#Initialize submodules
-git submodule init; git submodule update;
-
 curr_dir=`pwd`
 
+# pull in plugins
+git submodule init; git submodule update;
+
+# vim
 rm -rf $HOME/.vim
-ln -s $curr_dir/vim $HOME/.vim
-
+cp -rf $curr_dir/vim $HOME/.vim
 rm $HOME/.vimrc
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
+cp $curr_dir/vimrc $HOME/.vimrc
 
+# bash
 rm $HOME/.bashrc
-ln -s $curr_dir/bash/bashrc $HOME/.bashrc
-
+cp $curr_dir/bash/bashrc $HOME/.bashrc
 rm $HOME/.bash_profile
-ln -s $curr_dir/bash/bash_profile $HOME/.bash_profile
+cp $curr_dir/bash/bash_profile $HOME/.bash_profile
 
+# irb
 rm $HOME/.irbrc
-ln -s $curr_dir/irbrc $HOME/.irbrc
+cp $curr_dir/irbrc $HOME/.irbrc
 
-rm $HOME/.rbenv
-ln -s $curr_dir/rbenv $HOME/.rbenv
-
+# git
 rm $HOME/.gitconfig
-ln -s $curr_dir/gitconfig $HOME/.gitconfig
+cp $curr_dir/git/gitconfig $HOME/.gitconfig
 
+# tmux
 rm $HOME/.tmux.conf
-ln -s $curr_dir/tmux $HOME/.tmux.conf
-
-rm $HOME/.muttrc
-ln -s $curr_dir/mutt $HOME/.muttrc
-mkdir -p ~/.mutt/cache/headers
-mkdir ~/.mutt/cache/bodies
-touch ~/.mutt/certificates
-
-rm $HOME/.urlview
-ln -s $curr_dir/urlview $HOME/.urlview
-
-touch $HOME/.baseline_dotfiles
+cp $curr_dir/tmux $HOME/.tmux.conf
