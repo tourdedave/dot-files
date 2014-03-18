@@ -37,5 +37,5 @@ set -o vi
 export PATH="/usr/local/heroku/bin:$PATH"
 
 ### rbenv
-export PATH="$HOME/.rbenv/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
