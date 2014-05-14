@@ -1,12 +1,18 @@
 "map <C-r><C-r> :!clear; sudo bundle exec ckit brew <Return>
 "map <C-r> :!clear; python % <Return>
-"map <C-r> :!clear; ruby % <Return>
-map <C-r> :!clear; rspec % <Return>
+map <C-r> :!clear; ruby % <Return>
+"map <C-r> :!clear; rspec % <Return>
+"map <C-r> :!clear; bundle exec rake cloud[cloudwall,false,'~slow ~wip'] <Return>
+"map <C-r> :!clear; bundle exec rake tags:by_use['low'] <Return>
+"map <C-r> :!clear; processes=5 bundle exec rake headless[cloudwall,,] <Return>
+"map <C-r> :!clear; processes=1 bundle exec rake headless[,,focus] <Return>
+"map <C-r> :!clear; bundle exec rake parallel:full <Return>
 
 let mapleader = ","
 set list
 set number
-set listchars=trail:.,extends:#
+"set listchars=trail:,extends:#
+set list listchars=trail:·,eol:¬
 set tabstop=2 shiftwidth=2 expandtab
 set foldmethod=indent
 set foldnestmax=10
@@ -55,3 +61,10 @@ set undoreload=10000
 autocmd BufRead,BufNewFile *.md setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline
+
+set cursorline
+set cursorcolumn
+set colorcolumn=80
+set incsearch
+set autoindent
+set showcmd
