@@ -11,7 +11,7 @@ map <C-r> :!clear; ruby % <Return>
 let mapleader = ","
 set list
 set number
-"set listchars=trail:,extends:#
+"set list listchars=trail:·,extends:#
 set list listchars=trail:·,eol:¬
 set tabstop=2 shiftwidth=2 expandtab
 set foldmethod=indent
