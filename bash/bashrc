@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
-
 ### Git prompt styling
 source ~/.git-prompt.sh
 source ~/.git-completion.bash
