@@ -1,6 +1,5 @@
 "map <C-r><C-r> :!clear; sudo bundle exec ckit brew <Return>
 "map <C-r> :!clear; python % <Return>
-map <C-r> :!clear; ruby % <Return>
 "map <C-r> :!clear; rspec % <Return>
 "map <C-r> :!clear; bundle exec rake cloud[cloudwall,false,'~slow ~wip'] <Return>
 "map <C-r> :!clear; bundle exec rake tags:by_use['low'] <Return>
@@ -63,8 +62,11 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 
 set cursorline
-set cursorcolumn
-set colorcolumn=80
+"set cursorcolumn
+"set colorcolumn=80
 set incsearch
 set autoindent
 set showcmd
+
+map <Leader><C-r> :!clear; ruby % <Return>
+map <Leader><C-n> :!clear; node % <Return>
