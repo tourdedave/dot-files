@@ -13,7 +13,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
-export PS1=$LIGHT_GRAY"\u@\h"'$(
+export PS1=$LIGHT_GRAY""'$(
     if [[ $(__git_ps1) =~ \*\)$ ]]
     # a file has been modified but not added
     then echo "'$YELLOW'"$(__git_ps1 " (%s)")
