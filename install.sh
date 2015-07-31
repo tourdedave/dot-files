@@ -27,14 +27,14 @@ rm $HOME/.git-prompt.sh
 cp $curr_dir/git/prompt $HOME/.git-prompt.sh
 chmod 755 $HOME/.git-prompt.sh
 
-rm $HOME/.git-completion.bash
-cp $curr_dir/git/completion $HOME/.git-completion.bash
-chmod 755 $HOME/.git-completion.bash
+#rm $HOME/.git-completion.bash
+#cp $curr_dir/git/completion $HOME/.git-completion.bash
+#chmod 755 $HOME/.git-completion.bash
 
 # tmux
-rm $HOME/.tmux.conf
-cp $curr_dir/tmux $HOME/.tmux.conf
+#rm $HOME/.tmux.conf
+#cp $curr_dir/tmux $HOME/.tmux.conf
 
 # rbenv
-rm -rf $HOME/.rbenv/plugins
-cp -rf $curr_dir/rbenv/plugins $HOME/.rbenv/plugins
+#rm -rf $HOME/.rbenv/plugins
+#cp -rf $curr_dir/rbenv/plugins $HOME/.rbenv/plugins
