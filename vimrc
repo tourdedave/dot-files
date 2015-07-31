@@ -26,8 +26,11 @@ set hlsearch
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
-filetype on
-syntax on
+set nocompatible      " We're running Vim, not Vi!
+syntax on             " Enable syntax highlighting
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
@@ -61,12 +64,18 @@ autocmd BufRead,BufNewFile *.md setlocal spell
 hi clear SpellBad
 hi SpellBad cterm=underline
 
-set cursorline
-"set cursorcolumn
-"set colorcolumn=80
+" set cursorline
+" set cursorcolumn
+" set colorcolumn=80
 set incsearch
 set autoindent
 set showcmd
+set paste
 
-map <Leader><C-r> :!clear; ruby % <Return>
+
+map <Leader><C-e> :!clear; bundle exec rspec % <Return>
+map <Leader><C-r> :!clear; bundle exec ruby % <Return>
 map <Leader><C-n> :!clear; node % <Return>
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
