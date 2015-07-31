@@ -22,3 +22,6 @@
 [submodule "rbenv/plugins/rbenv-binstubs"]
 	path = rbenv/plugins/rbenv-binstubs
 	url = https://github.com/ianheggie/rbenv-binstubs.git
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
