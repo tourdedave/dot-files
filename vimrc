@@ -1,81 +1,171 @@
-"map <C-r><C-r> :!clear; sudo bundle exec ckit brew <Return>
-"map <C-r> :!clear; python % <Return>
-"map <C-r> :!clear; rspec % <Return>
-"map <C-r> :!clear; bundle exec rake cloud[cloudwall,false,'~slow ~wip'] <Return>
-"map <C-r> :!clear; bundle exec rake tags:by_use['low'] <Return>
-"map <C-r> :!clear; processes=5 bundle exec rake headless[cloudwall,,] <Return>
-"map <C-r> :!clear; processes=1 bundle exec rake headless[,,focus] <Return>
-"map <C-r> :!clear; bundle exec rake parallel:full <Return>
+set shell=/bin/bash " Vundle doesnt support fish
+" neovim/python integration
+let g:python_host_prog = "/usr/local/bin/python2"
+let g:python3_host_prog = "/usr/local/bin/python3"
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set encoding=utf8             " Set utf8 as standard encoding
 
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
+
+" Plugins
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim'
+endif
+Plugin 'w0rp/ale'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'mgee/lightline-bufferline'
+Plugin 'NovaDev94/lightline-onedark'
+Plugin 'itchyny/lightline.vim'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'scrooloose/nerdtree'
+Plugin 'joshdick/onedark.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'itchyny/vim-gitbranch'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'pangloss/vim-javascript'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'prettier/vim-prettier'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" FZF integration
+set rtp+=/usr/local/opt/fzf
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+" set leader key
 let mapleader = ","
+
+" customize characters
+set expandtab
+set tabstop=2
+set shiftwidth=2
 set list
-set number
-"set list listchars=trail:·,extends:#
 set list listchars=trail:·,eol:¬
-set tabstop=2 shiftwidth=2 expandtab
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
-set noequalalways
-set helpheight=9999
-set winminheight=0
-set winheight=999
+
+" turn numbers on
+" set number
+
+" highlight all found entries
 set hlsearch
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+" remove highlight
+nnoremap <CR> :noh<CR>
 
-set nocompatible      " We're running Vim, not Vi!
-syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
+" turn on vim's wild menu
+set wildmenu
 
+" make the wild menu case insensitive
+set wildignorecase
+
+" enable syntax highlighting
+syntax on
+
+" enable vim plugin support with pathogen
+"execute pathogen#infect()
+
+" auto-read a file when it's changed from the outside
+set autoread
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" key bindings for pane navigation
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <c-h> <c-w>h<c-w>_
 map <c-l> <c-w>l<c-w>_
-inoremap <C-s> <esc>:w<cr>a
-nnoremap <C-s> :w<Return>
-map <silent> <Leader><Leader> :noh<Return>
 
-set laststatus=2
-set statusline=
-set statusline+=%F                          "file & path
-set statusline+=\ %{fugitive#statusline()}  "git branch
-hi StatusLine ctermfg=DarkYellow ctermbg=Black
-au InsertEnter * hi StatusLine ctermfg=DarkRed ctermbg=DarkGreen
-au InsertLeave * hi StatusLine ctermfg=DarkGreen ctermbg=Black
+" FZF key bindings
+map <C-f> :FZF<CR>
+map <C-p> :FZF<CR>
 
+" NERDTree customizations
 let g:NERDTreeDirArrows=0
 let NERDTreeShowHidden=1
 
-" System wide copy paste
-set clipboard=unnamedplus
+" Ignore case when searching
+set ignorecase
 
-" Allows you to close vim, come back, and be able to undo with 'u'
-set undodir=$HOME/.vim/undo
-set undolevels=1000
-set undoreload=10000
+" When searching try to be smart about cases
+set smartcase
 
-" Spell check for markdown
-autocmd BufRead,BufNewFile *.md setlocal spell
-hi clear SpellBad
-hi SpellBad cterm=underline
+" Prevent swp files from being rendered
+set nobackup
+set nowb
+set noswapfile
 
-" set cursorline
-" set cursorcolumn
-" set colorcolumn=80
-set incsearch
-set autoindent
-set showcmd
-set paste
+" Key mapping for buffer traversal
+map ' :bn<CR>
+map " :bp<CR>
+map { :bn<CR>
+map } :bp<CR>
+map Q :bd<CR>
 
+" Allow unsaved files in buffer when switching
+set hidden
 
-map <Leader><C-e> :!clear; bundle exec rspec % <Return>
-map <Leader><C-r> :!clear; bundle exec ruby % <Return>
-map <Leader><C-n> :!clear; node % <Return>
+" Remap ; to : to avoid needing to hit shift 'a-may-zing!'
+nnoremap ; :
 
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+" Set color scheme
+let g:onedark_termcolors = 16
+colorscheme onedark
+
+" status bar config
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline_theme='onedark'
+
+" code complete with deoplete
+let g:deoplete#enable_at_startup = 1
+autocmd FileType markdown let g:deoplete#enable_at_startup=0
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+let g:deoplete#file#enable_buffer_path = 1
+
+" JS code folding by syntax
+augroup javascript_folding
+  au!
+  au FileType javascript setlocal foldmethod=syntax
+augroup END
+
+" Save & load code folding from previously opened files
+autocmd BufWinLeave *? silent! mkview
+autocmd BufWinEnter *? silent! loadview
+
+" lightline config
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline = {
+\   'colorscheme': 'onedark',
+\   'active': {
+\     'left':[ [ 'mode', 'paste' ],
+\              [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ]
+\     ]
+\   },
+\   'component_function': {
+\     'gitbranch': 'fugitive#head',
+\   }
+\ }
+let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
+set showtabline=2
+set guioptions-=e
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'javascript.jsx': ['prettier'],
+\   'css': ['prettier'],
+\}
+
+" let g:ale_fix_on_save = 1
+nmap <leader>pr :Prettier<CR>
+
