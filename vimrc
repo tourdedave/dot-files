@@ -34,17 +34,19 @@ Plugin 'prettier/vim-prettier'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" FZF integration
-set rtp+=/usr/local/opt/fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
 " set leader key
 let mapleader = ","
 
 " customize characters
 set expandtab
+set smarttab
 set tabstop=2
 set shiftwidth=2
+set lbr
+set tw=500
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 set list
 set list listchars=trail:·,eol:¬
 
@@ -78,16 +80,11 @@ map <C-K> <C-W>k<C-W>_
 map <c-h> <c-w>h<c-w>_
 map <c-l> <c-w>l<c-w>_
 
-" FZF key bindings
-map <C-f> :FZF<CR>
-map <C-p> :FZF<CR>
-
-" NERDTree customizations
-let g:NERDTreeDirArrows=0
-let NERDTreeShowHidden=1
-
 " Ignore case when searching
 set ignorecase
+
+" Ignore compiled files
+set wildignore=*.o,*~,*.pyc
 
 " When searching try to be smart about cases
 set smartcase
@@ -110,31 +107,45 @@ set hidden
 " Remap ; to : to avoid needing to hit shift 'a-may-zing!'
 nnoremap ; :
 
-" Set color scheme
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" set color scheme
 let g:onedark_termcolors = 16
 colorscheme onedark
 
-" status bar config
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline_theme='onedark'
+" FZF integration
+set rtp+=/usr/local/opt/fzf
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+map <C-f> :FZF<CR>
+map <C-p> :FZF<CR>
 
-" code complete with deoplete
-let g:deoplete#enable_at_startup = 1
-autocmd FileType markdown let g:deoplete#enable_at_startup=0
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-let g:deoplete#file#enable_buffer_path = 1
+" NERDTree customizations
+let g:NERDTreeDirArrows=0
+let NERDTreeShowHidden=1
 
-" JS code folding by syntax
-"augroup javascript_folding
-"  au!
-"  au FileType javascript setlocal foldmethod=syntax
-"augroup END
+" deoplete
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+  autocmd FileType markdown let g:deoplete#enable_at_startup=0
+  let g:deoplete#file#enable_buffer_path = 1
+endif
 
-" Save & load code folding from previously opened files
-"autocmd BufWinLeave *? silent! mkview
-"autocmd BufWinEnter *? silent! loadview
-
-" lightline config
+" tab and status line config
 let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed      = '[No Name]'
 let g:lightline = {
@@ -154,6 +165,7 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 set showtabline=2
 set guioptions-=e
 
+" ale
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'javascript.jsx': ['prettier'],
@@ -163,3 +175,29 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 nmap <leader>pr :Prettier<CR>
 
+" Silver searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+" bind K to grep the last search term
+nnoremap K :grep! "\b<C-R>/\b"<CR>:cw<CR><CR>
+
+set switchbuf=useopen
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>:cclose<CR>
+augroup vimrcQfClose
+    autocmd!
+    autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
+augroup END
