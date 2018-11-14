@@ -48,9 +48,6 @@ set shiftwidth=2
 set list
 set list listchars=trail:·,eol:¬
 
-" turn numbers on
-" set number
-
 " highlight all found entries
 set hlsearch
 
@@ -65,9 +62,6 @@ set wildignorecase
 
 " enable syntax highlighting
 syntax on
-
-" enable vim plugin support with pathogen
-"execute pathogen#infect()
 
 " auto-read a file when it's changed from the outside
 set autoread
@@ -131,14 +125,14 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:deoplete#file#enable_buffer_path = 1
 
 " JS code folding by syntax
-augroup javascript_folding
-  au!
-  au FileType javascript setlocal foldmethod=syntax
-augroup END
+"augroup javascript_folding
+"  au!
+"  au FileType javascript setlocal foldmethod=syntax
+"augroup END
 
 " Save & load code folding from previously opened files
-autocmd BufWinLeave *? silent! mkview
-autocmd BufWinEnter *? silent! loadview
+"autocmd BufWinLeave *? silent! mkview
+"autocmd BufWinEnter *? silent! loadview
 
 " lightline config
 let g:lightline#bufferline#shorten_path = 1
@@ -166,6 +160,6 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \}
 
-" let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 1
 nmap <leader>pr :Prettier<CR>
 
