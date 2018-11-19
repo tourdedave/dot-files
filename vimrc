@@ -1,36 +1,56 @@
-set shell=/bin/bash " Vundle doesnt support fish
-" neovim/python integration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""           INIT            	   """"""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle doesnt support fish
+set shell=/bin/bash
+
+" Neovim Python integration
 let g:python_host_prog = "/usr/local/bin/python2"
 let g:python3_host_prog = "/usr/local/bin/python3"
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
-set encoding=utf8             " Set utf8 as standard encoding
+set encoding=UTF-8             " Set utf8 as standard encoding
 
-" set the runtime path to include Vundle and initialize
+" Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
-" Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""           PLUGINS             """"""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Core Plugins
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'w0rp/ale'
+Plugin 'vim-airline/vim-airline'
+Plugin 'RRethy/vim-illuminate'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'ervandew/supertab'
+Plugin 'joshdick/onedark.vim'
+Plugin 'ryanoasis/vim-devicons'
+"Plugin 'ternjs/tern_for_vim'
+
+" Neovim plugins
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim'
+"  Plugin 'carlitux/deoplete-ternjs'
 endif
-Plugin 'w0rp/ale'
+
+" Language bindings
+Plugin 'dag/vim-fish'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'mgee/lightline-bufferline'
-Plugin 'NovaDev94/lightline-onedark'
-Plugin 'itchyny/lightline.vim'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'scrooloose/nerdtree'
-Plugin 'joshdick/onedark.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'itchyny/vim-gitbranch'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'prettier/vim-prettier'
+Plugin 'mxw/vim-jsx'
 
-" All of your Plugins must be added before the following line
+" All plugins must be added before this line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -47,8 +67,6 @@ set tw=500
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-set list
-set list listchars=trail:·,eol:¬
 
 " highlight all found entries
 set hlsearch
@@ -123,21 +141,26 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
-" set color scheme
-let g:onedark_termcolors = 16
-colorscheme onedark
-
-" FZF integration
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => FZF
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=/usr/local/opt/fzf
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 map <C-f> :FZF<CR>
 map <C-p> :FZF<CR>
 
-" NERDTree customizations
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NERDTree
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeDirArrows=0
 let NERDTreeShowHidden=1
+let NERDTreeIgnore=['node_modules', '\.git$', '\.hg$']
+map <C-x> :NERDTreeToggle<CR>
 
-" deoplete
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => deoplete
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
   autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -145,37 +168,21 @@ if has('nvim')
   let g:deoplete#file#enable_buffer_path = 1
 endif
 
-" tab and status line config
-let g:lightline#bufferline#shorten_path = 1
-let g:lightline#bufferline#unnamed      = '[No Name]'
-let g:lightline = {
-\   'colorscheme': 'onedark',
-\   'active': {
-\     'left':[ [ 'mode', 'paste' ],
-\              [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ]
-\     ]
-\   },
-\   'component_function': {
-\     'gitbranch': 'fugitive#head',
-\   }
-\ }
-let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
-set showtabline=2
-set guioptions-=e
 
-" ale
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => ALE
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'javascript.jsx': ['prettier'],
 \   'css': ['prettier'],
 \}
-
 let g:ale_fix_on_save = 1
 nmap <leader>pr :Prettier<CR>
 
-" Silver searcher
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Silver Searcher (ag)
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -192,8 +199,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
-" bind K to grep the last search term
-nnoremap K :grep! "\b<C-R>/\b"<CR>:cw<CR><CR>
+nnoremap K :grep! "\b<C-R>/\b"<CR>:cw<CR><CR> " bind K to grep the last search term
 
 set switchbuf=useopen
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>:cclose<CR>
@@ -201,3 +207,45 @@ augroup vimrcQfClose
     autocmd!
     autocmd FileType qf if mapcheck('<esc>', 'n') ==# '' | nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR> | endif
 augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => SuperTab
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Status line
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Always show the status line
+set laststatus=2
+
+" Set airline font
+let g:airline_theme='onedark'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_powerline_fonts = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and fonts (onedark)
+" """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256
+colorscheme onedark
+
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+
