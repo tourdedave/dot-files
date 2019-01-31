@@ -112,16 +112,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" Key mapping for buffer traversal
-map ' :bn<CR>
-map " :bp<CR>
-map { :bn<CR>
-map } :bp<CR>
-map Q :bd<CR>
-
-" Allow unsaved files in buffer when switching
-set hidden
-
 " Remap ; to : to avoid needing to hit shift 'a-may-zing!'
 nnoremap ; :
 
@@ -172,6 +162,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ALE
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ale_virtualtext_cursor = 1
 let g:ale_fixers = {
 \   'javascript': ['prettier'],
 \   'javascript.jsx': ['prettier'],
@@ -248,4 +239,22 @@ if (empty($TMUX))
   endif
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
 
+" Key mapping for buffer traversal
+map ' :bn<CR>
+map " :bp<CR>
+map { :bn<CR>
+map } :bp<CR>
+map Q :bd<CR>
+
+" Allow unsaved files in buffer when switching
+set hidden
+
+" Close all buffers but the current one
+command On execute "%bd|e#|bd#"
