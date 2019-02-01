@@ -135,7 +135,7 @@ set mat=2
 " => FZF
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set rtp+=/usr/local/opt/fzf
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --ignore node_modules -g ""'
 map <C-f> :FZF<CR>
 map <C-p> :FZF<CR>
 
