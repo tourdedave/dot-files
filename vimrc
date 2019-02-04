@@ -54,6 +54,13 @@ Plugin 'mxw/vim-jsx'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""           GENERAL             """"""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" clipboard
+set clipboard+=unnamedplus
+
 " set leader key
 let mapleader = ","
 
