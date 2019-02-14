@@ -265,3 +265,6 @@ set hidden
 
 " Close all buffers but the current one
 command On execute "%bd|e#|bd#"
+
+" Interactive mouse
+set mouse=a
