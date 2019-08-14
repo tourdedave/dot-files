@@ -58,7 +58,7 @@ filetype plugin indent on    " required
 """"""""""""""""           GENERAL             """"""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" clipboard
+" copy whole line to system clipboard
 set clipboard+=unnamedplus
 
 " set leader key
@@ -151,6 +151,7 @@ map <C-p> :FZF<CR>
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDTreeDirArrows=0
 let NERDTreeShowHidden=1
+let g:NERDTreeWinSize=40
 let NERDTreeIgnore=['node_modules', '\.git$', '\.hg$']
 map <C-x> :NERDTreeToggle<CR>
 
@@ -170,13 +171,22 @@ endif
 " => ALE
 " """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_virtualtext_cursor = 1
-let g:ale_fixers = {
-\   'javascript': ['prettier'],
-\   'javascript.jsx': ['prettier'],
-\   'css': ['prettier'],
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'javascript.jsx': ['eslint'],
+\   'html': ['stylelint'],
+\   'css': ['stylelint'],
 \}
-let g:ale_fix_on_save = 1
-nmap <leader>pr :Prettier<CR>
+let g:ale_fixers = {
+\   'javascript': ['prettier', 'eslint'],
+\   'javascript.jsx': ['prettier', 'eslint'],
+\   'css': ['prettier'],
+\   'json': ['prettier'],
+\   'html': ['prettier'],
+\}
+" let g:ale_fix_on_save = 1
+"nmap <leader>pr :Prettier<CR>
+nmap <leader>pr :ALEFix<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Silver Searcher (ag)
@@ -244,6 +254,10 @@ if (empty($TMUX))
   if (has("termguicolors"))
     set termguicolors
   endif
+endif
+
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
