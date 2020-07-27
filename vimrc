@@ -282,3 +282,6 @@ command On execute "%bd|e#|bd#"
 
 " Interactive mouse
 set mouse=a
+
+" Hope I don't need to type the name JJ Abrams
+imap jj <Esc>
