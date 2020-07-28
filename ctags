@@ -1,0 +1,6 @@
+--options=/Users/tourdedave/_dev/ctags-patterns-for-javascript/ctagsrc
+--exclude=.git
+--exclude=log
+--exclude=tmp
+--exclude=node_modules
+--exclude=dist

@@ -33,6 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'joshdick/onedark.vim'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'ludovicchabant/vim-gutentags'
 "Plugin 'ternjs/tern_for_vim'
 
 " Neovim plugins
