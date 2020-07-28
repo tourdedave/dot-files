@@ -5,8 +5,8 @@
 set shell=/bin/bash
 
 " Neovim Python integration
-let g:python_host_prog = "/usr/local/bin/python2"
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python_host_prog = "/usr/bin/python2"
+let g:python3_host_prog = "/usr/bin/python3"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -29,6 +29,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'RRethy/vim-illuminate'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rhubarb'
 Plugin 'tpope/vim-surround'
 Plugin 'ervandew/supertab'
 Plugin 'joshdick/onedark.vim'
@@ -38,7 +39,7 @@ Plugin 'ludovicchabant/vim-gutentags'
 
 " Neovim plugins
 if has('nvim')
-  Plugin 'Shougo/deoplete.nvim'
+"  Plugin 'Shougo/deoplete.nvim'
 "  Plugin 'carlitux/deoplete-ternjs'
 endif
 
@@ -46,10 +47,15 @@ endif
 Plugin 'dag/vim-fish'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'itchyny/vim-gitbranch'
-Plugin 'pangloss/vim-javascript'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'prettier/vim-prettier'
+"Plugin 'sheerun/vim-polyglot'
+" NOTE: commented out since it breaks auto-indentation
+" because it sets a value to indentexpr for JSX
+" which seems to prevent auto-indent from happening
+" in standard JS files.
+" re: https://stackoverflow.com/questions/3223695/javascript-indentation-in-vim
 Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'prettier/vim-prettier'
 
 " All plugins must be added before this line
 call vundle#end()            " required
@@ -72,8 +78,8 @@ set tabstop=2
 set shiftwidth=2
 set lbr
 set tw=500
-set ai "Auto indent
-set si "Smart indent
+set autoindent
+set smartindent
 set wrap "Wrap lines
 
 " highlight all found entries
