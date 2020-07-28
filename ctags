@@ -4,3 +4,4 @@
 --exclude=tmp
 --exclude=node_modules
 --exclude=dist
+--exclude=build
