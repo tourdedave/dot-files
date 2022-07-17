@@ -1,5 +1,6 @@
 ## Getting Started
 
+0. Copy `zshrc` to `~/.zshrc`
 1. Install [nerd-font](https://github.com/ryanoasis/nerd-fonts#font-installation)
 2. Set Nerd Font size 14 in terminal appearance preferences
 3. Copy `vimrc` to `~/.vimrc`
