@@ -127,6 +127,7 @@ alias adb="~/Library/Android/sdk/platform-tools/adb"
 alias logs="node -e \"console.log(os.tmpdir() + '/applitools-logs')\" | xargs open"
 alias apisdk="echo APPLITOOLS_API_KEY=$APPLITOOLS_API_KEY"
 alias l="ls -al node_modules/@applitools"
+alias cddev="cd /Users/me/Documents/_dev"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
